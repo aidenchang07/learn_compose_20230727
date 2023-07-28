@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">learn_compose_20230727</string>
+    <string name="hello">Hey there, </string>
+    <string name="create_account">Create an Account</string>
+    <string name="welcome">Welcome Back</string>
+    <string name="first_name">First Name</string>
 </resources>
