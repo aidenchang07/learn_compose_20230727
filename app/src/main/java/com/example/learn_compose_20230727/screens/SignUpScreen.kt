@@ -15,9 +15,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.learn_compose_20230727.R
+import com.example.learn_compose_20230727.components.CheckboxComponent
 import com.example.learn_compose_20230727.components.HeadingTextComponent
 import com.example.learn_compose_20230727.components.MyTextFieldComponent
 import com.example.learn_compose_20230727.components.NormalTextComponent
+import com.example.learn_compose_20230727.components.PasswordMyTextFieldComponent
 
 /**
  * Created by AidenChang 2023/07/27
@@ -51,10 +53,12 @@ fun SignUpScreen() {
                 painterResource = painterResource(id = R.drawable.message)
             )
 
-            MyTextFieldComponent(
+            PasswordMyTextFieldComponent(
                 labelValue = stringResource(id = R.string.password),
                 painterResource = painterResource(id = R.drawable.ic_lock)
             )
+
+            CheckboxComponent(value = stringResource(id = R.string.term_and_conditions))
         }
     }
 }
