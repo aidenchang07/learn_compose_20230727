@@ -207,6 +207,8 @@ fun ClickableTextComponent(value: String) {
         annotatedString.getStringAnnotations(offset, offset)
             .firstOrNull()?.also { span ->
                 Log.d("ClickableTextComponent", "{$span}, offset: $offset")
+
+                if (span.item)
             }
     })
 }

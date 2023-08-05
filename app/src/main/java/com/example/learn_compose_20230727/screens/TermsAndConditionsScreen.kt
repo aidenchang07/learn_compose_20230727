@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.learn_compose_20230727.R
+import com.example.learn_compose_20230727.components.HeadingTextComponent
 import com.example.learn_compose_20230727.components.NormalTextComponent
 
 /**
@@ -24,7 +25,7 @@ fun TermsAndConditionsScreen() {
         .fillMaxSize()
         .background(color = Color.White)
         .padding(16.dp)) {
-        NormalTextComponent(value = stringResource(id = R.string.term_and_conditions_header))
+        HeadingTextComponent(value = stringResource(id = R.string.term_and_conditions_header))
     }
 }
 
