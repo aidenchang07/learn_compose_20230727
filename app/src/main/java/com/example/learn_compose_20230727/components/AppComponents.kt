@@ -1,9 +1,11 @@
 package com.example.learn_compose_20230727.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -22,16 +24,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.learn_compose_20230727.R
@@ -162,21 +170,43 @@ fun PasswordMyTextFieldComponent(labelValue: String, painterResource: Painter) {
 fun CheckboxComponent(value: String) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .heightIn(56.dp)
-        .padding(16.dp),
+        .heightIn(56.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         val checkState = remember {
             mutableStateOf(false)
         }
         Checkbox(checked = checkState.value, onCheckedChange = {
-            checkState.value != checkState.value
+            checkState.value = it
         })
-        NormalTextComponent(value)
+        ClickableTextComponent(value)
     }
 }
 
 @Composable
 fun ClickableTextComponent(value: String) {
-    
+    val initialText = "By continuing you accept our "
+    val privacyPolicyText = "Privacy Policy"
+    val andText = " and "
+    val termsAndConditionsText = "Term of Use"
+
+    val annotatedString = buildAnnotatedString {
+        append(initialText)
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+            pushStringAnnotation(tag = privacyPolicyText, annotation = privacyPolicyText)
+            append(privacyPolicyText)
+        }
+        append(andText)
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+            pushStringAnnotation(tag = termsAndConditionsText, annotation = termsAndConditionsText)
+            append(termsAndConditionsText)
+        }
+    }
+
+    ClickableText(text = annotatedString, onClick = { offset ->
+        annotatedString.getStringAnnotations(offset, offset)
+            .firstOrNull()?.also { span ->
+                Log.d("ClickableTextComponent", "{$span}, offset: $offset")
+            }
+    })
 }
