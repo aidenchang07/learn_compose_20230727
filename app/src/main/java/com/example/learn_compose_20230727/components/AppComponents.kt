@@ -167,7 +167,7 @@ fun PasswordMyTextFieldComponent(labelValue: String, painterResource: Painter) {
 }
 
 @Composable
-fun CheckboxComponent(value: String) {
+fun CheckboxComponent(value: String, onTextSelected: (String) -> Unit) {
     Row(modifier = Modifier
         .fillMaxWidth()
         .heightIn(56.dp),
@@ -179,12 +179,12 @@ fun CheckboxComponent(value: String) {
         Checkbox(checked = checkState.value, onCheckedChange = {
             checkState.value = it
         })
-        ClickableTextComponent(value)
+        ClickableTextComponent(value, onTextSelected)
     }
 }
 
 @Composable
-fun ClickableTextComponent(value: String) {
+fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
     val initialText = "By continuing you accept our "
     val privacyPolicyText = "Privacy Policy"
     val andText = " and "
@@ -208,7 +208,9 @@ fun ClickableTextComponent(value: String) {
             .firstOrNull()?.also { span ->
                 Log.d("ClickableTextComponent", "{$span}, offset: $offset")
 
-                if (span.item)
+                if (span.item == termsAndConditionsText) {
+                    onTextSelected(span.item)
+                }
             }
     })
 }

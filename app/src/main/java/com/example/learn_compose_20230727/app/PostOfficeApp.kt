@@ -7,6 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.learn_compose_20230727.navigation.PostOfficeAppRouter
+import com.example.learn_compose_20230727.navigation.Screen
+import com.example.learn_compose_20230727.screens.SignUpScreen
+import com.example.learn_compose_20230727.screens.TermsAndConditionsScreen
 
 /**
  * Created by AidenChang 2023/07/27
@@ -20,7 +23,12 @@ fun PostOfficeApp() {
     ) {
         Crossfade(targetState = PostOfficeAppRouter.currentScreen) { currentState ->
             when (currentState.value) {
-
+                is Screen.SignUpScreen -> {
+                    SignUpScreen()
+                }
+                is Screen.TermsAndConditionsScreen -> {
+                    TermsAndConditionsScreen()
+                }
             }
         }
     }

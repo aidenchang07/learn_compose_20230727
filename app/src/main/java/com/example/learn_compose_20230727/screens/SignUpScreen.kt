@@ -58,7 +58,7 @@ fun SignUpScreen() {
                 painterResource = painterResource(id = R.drawable.ic_lock)
             )
 
-            CheckboxComponent(value = stringResource(id = R.string.term_and_conditions))
+            CheckboxComponent(value = stringResource(id = R.string.term_and_conditions), onTextSelected = {})
         }
     }
 }
