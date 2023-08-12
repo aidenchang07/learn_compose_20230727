@@ -15,11 +15,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.learn_compose_20230727.R
+import com.example.learn_compose_20230727.app.PostOfficeApp
+import com.example.learn_compose_20230727.components.ButtonComponent
 import com.example.learn_compose_20230727.components.CheckboxComponent
 import com.example.learn_compose_20230727.components.HeadingTextComponent
 import com.example.learn_compose_20230727.components.MyTextFieldComponent
 import com.example.learn_compose_20230727.components.NormalTextComponent
 import com.example.learn_compose_20230727.components.PasswordMyTextFieldComponent
+import com.example.learn_compose_20230727.navigation.PostOfficeAppRouter
+import com.example.learn_compose_20230727.navigation.Screen
 
 /**
  * Created by AidenChang 2023/07/27
@@ -58,7 +62,13 @@ fun SignUpScreen() {
                 painterResource = painterResource(id = R.drawable.ic_lock)
             )
 
-            CheckboxComponent(value = stringResource(id = R.string.term_and_conditions), onTextSelected = {})
+            CheckboxComponent(
+                value = stringResource(id = R.string.term_and_conditions),
+                onTextSelected = {
+                    PostOfficeAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
+            })
+
+            ButtonComponent(value = stringResource(id = R.string.register))
         }
     }
 }

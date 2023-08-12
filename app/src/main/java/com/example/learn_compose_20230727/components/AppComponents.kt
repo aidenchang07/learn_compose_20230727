@@ -1,15 +1,22 @@
 package com.example.learn_compose_20230727.components
 
 import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -24,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
@@ -208,9 +216,40 @@ fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
             .firstOrNull()?.also { span ->
                 Log.d("ClickableTextComponent", "{$span}, offset: $offset")
 
-                if (span.item == termsAndConditionsText) {
+                if (span.item == termsAndConditionsText || span.item == privacyPolicyText) {
                     onTextSelected(span.item)
                 }
             }
     })
+}
+
+@Composable
+fun ButtonComponent(value: String) {
+    Button(
+        onClick = { /*TODO*/ },
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(48.dp),
+        contentPadding = PaddingValues(),
+        colors = ButtonDefaults.buttonColors(Color.Transparent)
+    ) {
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(48.dp)
+            .background(
+                brush = Brush.horizontalGradient(
+                    listOf(
+                        MaterialTheme.colorScheme.secondary,
+                        MaterialTheme.colorScheme.primary
+                    )
+                ),
+                shape = RoundedCornerShape(50.dp)
+            ),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = value,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold)
+        }
+    }
 }
