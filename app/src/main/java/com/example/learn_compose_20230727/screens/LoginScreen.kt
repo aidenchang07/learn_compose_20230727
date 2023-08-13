@@ -16,79 +16,65 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.learn_compose_20230727.R
 import com.example.learn_compose_20230727.components.ButtonComponent
-import com.example.learn_compose_20230727.components.CheckboxComponent
 import com.example.learn_compose_20230727.components.ClickableLoginTextComponent
 import com.example.learn_compose_20230727.components.DividerTextComponent
 import com.example.learn_compose_20230727.components.HeadingTextComponent
 import com.example.learn_compose_20230727.components.MyTextFieldComponent
 import com.example.learn_compose_20230727.components.NormalTextComponent
 import com.example.learn_compose_20230727.components.PasswordMyTextFieldComponent
+import com.example.learn_compose_20230727.components.UnderLineTextComponent
 import com.example.learn_compose_20230727.navigation.PostOfficeAppRouter
 import com.example.learn_compose_20230727.navigation.Screen
+import com.example.learn_compose_20230727.navigation.SystemBackButtonHandler
 
 /**
- * Created by AidenChang 2023/07/27
+ * Created by AidenChang 2023/08/13
  */
 
 @Composable
-fun SignUpScreen() {
+fun LoginScreen() {
     Surface(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
             .padding(28.dp)
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            NormalTextComponent(value = stringResource(id = R.string.hello))
-            HeadingTextComponent(value = stringResource(id = R.string.create_account))
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            NormalTextComponent(value = stringResource(id = R.string.login))
+            HeadingTextComponent(value = stringResource(id = R.string.welcome))
             Spacer(modifier = Modifier.height(20.dp))
-
-            MyTextFieldComponent(
-                labelValue = stringResource(id = R.string.first_name),
-                painterResource = painterResource(id = R.drawable.profile)
-            )
-
-            MyTextFieldComponent(
-                labelValue = stringResource(id = R.string.last_name),
-                painterResource = painterResource(id = R.drawable.profile)
-            )
-
             MyTextFieldComponent(
                 labelValue = stringResource(id = R.string.email),
                 painterResource = painterResource(id = R.drawable.message)
             )
-
             PasswordMyTextFieldComponent(
                 labelValue = stringResource(id = R.string.password),
                 painterResource = painterResource(id = R.drawable.ic_lock)
             )
-
-            CheckboxComponent(
-                value = stringResource(id = R.string.term_and_conditions),
-                onTextSelected = {
-                    PostOfficeAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
-            })
-
-            Spacer(modifier = Modifier.height(40.dp))
-
-            ButtonComponent(value = stringResource(id = R.string.register))
-
             Spacer(modifier = Modifier.height(20.dp))
-
+            UnderLineTextComponent(stringResource(id = R.string.forgot_password))
+            Spacer(modifier = Modifier.height(20.dp))
+            ButtonComponent(value = stringResource(id = R.string.login))
+            Spacer(modifier = Modifier.height(20.dp))
             DividerTextComponent()
-
             ClickableLoginTextComponent(
                 tryingToLogin = false,
                 onTextSelected = {
-                    PostOfficeAppRouter.navigateTo(Screen.LoginScreen)
+                    PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
                 }
             )
         }
+    }
+
+    SystemBackButtonHandler {
+        PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
     }
 }
 
 @Preview
 @Composable
-fun DefaultPreviewOfSignUpScreen() {
-    SignUpScreen()
+fun LoginScreenPreview() {
+    LoginScreen()
 }

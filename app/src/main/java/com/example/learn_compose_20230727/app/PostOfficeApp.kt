@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.learn_compose_20230727.navigation.PostOfficeAppRouter
 import com.example.learn_compose_20230727.navigation.Screen
+import com.example.learn_compose_20230727.screens.LoginScreen
 import com.example.learn_compose_20230727.screens.SignUpScreen
 import com.example.learn_compose_20230727.screens.TermsAndConditionsScreen
 
@@ -28,6 +29,9 @@ fun PostOfficeApp() {
                 }
                 is Screen.TermsAndConditionsScreen -> {
                     TermsAndConditionsScreen()
+                }
+                is Screen.LoginScreen -> {
+                    LoginScreen()
                 }
             }
         }
